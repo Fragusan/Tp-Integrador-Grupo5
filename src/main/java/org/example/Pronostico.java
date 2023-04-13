@@ -15,4 +15,14 @@ public class Pronostico {
 
         this.pronostico = pronostico;
     }
+
+    public int puntos (){
+        int puntos = 0;
+        if(partido.resultadoPartido() == pronostico){
+            return puntos = 1;
+        }
+
+        return puntos;
+    }
+
 }
