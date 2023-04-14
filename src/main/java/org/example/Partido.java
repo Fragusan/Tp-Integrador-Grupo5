@@ -22,7 +22,5 @@ public class Partido {
         else resultado = Resultado.GANADOR_EQUIPO2;
 
         return resultado;
-    };
-
-
+    }
 }

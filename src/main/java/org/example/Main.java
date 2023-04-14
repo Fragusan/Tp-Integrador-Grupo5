@@ -1,9 +1,74 @@
 package org.example;
 
 
+import org.example.persistenciaDeDatos.archivo.ParticipanteArchivo;
+import org.example.persistenciaDeDatos.archivo.RondaArchivo;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
+
+        RondaArchivo archi=new RondaArchivo(args[0]);
+        List <Partido> partidos=new ArrayList<>();
+        ParticipanteArchivo arch=new ParticipanteArchivo(args[1]);
+        List<Participante> participantes=new ArrayList<>();
+
+
+        for (String elementos:archi.getArchivoResultado()) {
+            String []elementosRonda = elementos.split(",");
+
+            Equipo equipo1 = new Equipo(elementosRonda[1]);
+            Equipo equipo2 = new Equipo(elementosRonda[4]);
+
+            Partido partido = new Partido();
+            partido.setRonda(Integer.parseInt(elementosRonda[0]));
+            partido.setEquipo1(equipo1);
+            partido.setEquipo2(equipo2);
+            partido.setGolesEquipo1(Integer.parseInt(elementosRonda[2]));
+            partido.setGolesEquipo2(Integer.parseInt(elementosRonda[3]));
+            partido.setResultado(partido.resultadoPartido());
+
+            partidos.add(partido);
+        }
+
+       /* for (Partido elementos : partidos) {
+            System.out.println(elementos.getRonda());
+            System.out.println(elementos.getEquipo1());
+            System.out.println(elementos.getEquipo2());
+            System.out.println(elementos.getGolesEquipo1());
+            System.out.println(elementos.getGolesEquipo2());
+            System.out.println(elementos.getResultado());
+        }*/
+
+
+        for (String elementos:arch.getArchivoApuestas()){
+            Participante persona=new Participante();
+            String []nombre = elementos.split(",");
+            persona.setNombre(nombre[0]);
+            int X = elementos.indexOf("X");
+            if (elementos.charAt(X - 3) == ',') {
+                persona.setApuesta(Resultado.GANADOR_EQUIPO2);
+            }else{
+                if (elementos.charAt(X - 2) == ',') {
+                    persona.setApuesta(Resultado.EMPATE);
+                }else{
+                    persona.setApuesta(Resultado.GANADOR_EQUIPO1);
+                }
+            }
+            participantes.add(persona);
+        }
+       // System.out.println(participantes);
+
+       /* for (Participante a:participantes){
+             String aux=a.getNombre();
+             if(aux.equals(a.getNombre())){
+
+             }
+        }*/
 
         /*
         sacar dao
@@ -27,5 +92,4 @@ public class Main {
 
 
     }
-
 }
