@@ -7,11 +7,18 @@ import java.util.List;
 @Data
 public class Participante {
     private  String nombre;
-    private int puntos;
+    private int puntos ;
     private List<Pronostico> pronosticoParticipante;
 
     public Participante(String nombre) {
         this.nombre = nombre;
-        pronosticoParticipante = new ArrayList<>();
+        this.puntos = 0;
     }
+
+      /* pronosticoParticipante = new ArrayList<>();
+        for (Pronostico p : pronosticoParticipante) {
+
+            this.puntos += p.puntos();
+        }*/
+
 }
