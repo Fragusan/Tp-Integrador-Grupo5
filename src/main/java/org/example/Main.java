@@ -19,31 +19,31 @@ public class Main {
 
 
         for (String elementos:archi.getArchivoResultado()) {
-            String []elementosRonda = elementos.split(",");
+            String[] elementosRonda = elementos.split(",");
 
-            Equipo equipo1 = new Equipo(elementosRonda[1]);
-            Equipo equipo2 = new Equipo(elementosRonda[4]);
+            try {
+                if (elementosRonda.length != 5) {
+                    throw new Exception("El archivo no tiene la cantidad de elementos correcta. ");
+                } else {
+                    Equipo equipo1 = new Equipo(elementosRonda[1]);
+                    Equipo equipo2 = new Equipo(elementosRonda[4]);
 
-            Partido partido = new Partido();
-            partido.setRonda(Integer.parseInt(elementosRonda[0]));
-            partido.setEquipo1(equipo1);
-            partido.setEquipo2(equipo2);
-            partido.setGolesEquipo1(Integer.parseInt(elementosRonda[2]));
-            partido.setGolesEquipo2(Integer.parseInt(elementosRonda[3]));
-            partido.setResultado(partido.resultadoPartido());
+                    Partido partido = new Partido();
+                    partido.setRonda(Integer.parseInt(elementosRonda[0]));
+                    partido.setEquipo1(equipo1);
+                    partido.setEquipo2(equipo2);
+                    partido.setGolesEquipo1(Integer.parseInt(elementosRonda[2]));
+                    partido.setGolesEquipo2(Integer.parseInt(elementosRonda[3]));
+                    partido.setResultado(partido.resultadoPartido());
 
-            partidos.add(partido);
+                    partidos.add(partido);
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("El valor del dato de los goles no es un número entero. ");
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
         }
-
-       /* for (Partido elementos : partidos) {
-            System.out.println(elementos.getRonda());
-            System.out.println(elementos.getEquipo1());
-            System.out.println(elementos.getEquipo2());
-            System.out.println(elementos.getGolesEquipo1());
-            System.out.println(elementos.getGolesEquipo2());
-            System.out.println(elementos.getResultado());
-        }*/
-
 
         for (String elementos:arch.getArchivoApuestas()){
             Participante persona=new Participante();
@@ -85,11 +85,7 @@ public class Main {
         tiene un punto mas..
         este metodo debe ser testeado.
 
-
-
         /
          */
-
-
     }
 }

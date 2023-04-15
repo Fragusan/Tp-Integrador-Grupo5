@@ -12,10 +12,10 @@ public class RondaArchivo {
     private List<String> archivoResultado=new ArrayList<>();
 
     public RondaArchivo(String ruta) throws IOException {
-        List<String> allLines = Files.readAllLines(Paths.get(ruta));
-        for (int j = 1; j < allLines.size(); j++) {
-            this.archivoResultado.add(allLines.get(j));
-          }
+            List<String> allLines = Files.readAllLines(Paths.get(ruta));
+            for (int j = 1; j < allLines.size(); j++) {
+                this.archivoResultado.add(allLines.get(j));
+        }
     }
 }
 
