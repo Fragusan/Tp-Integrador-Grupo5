@@ -61,6 +61,20 @@ public class Main {
             }
             participantes.add(persona);
         }
+		
+		// Se crean los pronósticos correspondientes a cada uno de los participantes
+for (Participante participante : participantes) {
+    Pronostico pronostico = new Pronostico();
+    pronostico.setPartido(partidos.get(participante.getPartido()));
+    pronostico.setPronostico(participante.getApuesta());
+    pronosticos.add(pronostico);
+}
+
+// Se calculan los puntos de cada uno de los participantes
+for (int i = 0; i < participantes.size(); i++) {
+    int puntos = pronosticos.get(i).puntos();
+    participantes.get(i).setPuntos(puntos);
+}
        // System.out.println(participantes);
 
        /* for (Participante a:participantes){
